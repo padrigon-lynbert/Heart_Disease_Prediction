@@ -71,11 +71,11 @@ plt.grid(True)
 
 
 # # Plot Confusion Matrix
-# plt.figure(figsize=(8, 6))
-# sns.heatmap(conf_matrix_adjusted, annot=True, cmap='Blues', fmt='d', cbar=False)
-# plt.xlabel('Predicted Labels')
-# plt.ylabel('True Labels')
-# plt.title('Confusion Matrix 0.7 Threshold')
+plt.figure(figsize=(8, 6))
+sns.heatmap(conf_matrix_adjusted, annot=True, cmap='Blues', fmt='d', cbar=False)
+plt.xlabel('Predicted Labels')
+plt.ylabel('True Labels')
+plt.title('Confusion Matrix 0.7 Threshold')
 
 # # plt.show()
 
@@ -109,12 +109,32 @@ for cell_type, (row, col) in cell_types.items():
 
 plt.title('Confusion Matrix Threshold 0.7')
 
-# # Save image
-# fig_name = "Confusion Matrix Threshold 0.7.png"
-# bp = base_path + "/Figures"
-# save_to = os.path.join(bp, fig_name)
-# # plt.savefig(save_to)
-# # plt.savefig(save_to, dpi=300, bbox_inches='tight')
-# plt.savefig(save_to, bbox_inches='tight')
 
-plt.show()
+
+# plot coefficients
+
+coefficients = model.coef_[0]
+
+feature_names = X.columns
+coef_df = pd.DataFrame({'Feature': feature_names, 'Coefficient': coefficients})
+
+coef_df['Abs_Coefficient'] = coef_df['Coefficient'].abs()
+coef_df = coef_df.sort_values(by='Abs_Coefficient', ascending=False)
+
+# Plot coefficients
+# plt.figure(figsize=(10, 6))
+# sns.barplot(x='Coefficient', y='Feature', data=coef_df, palette='viridis')
+# plt.xlabel('Coefficient Magnitude')
+# plt.ylabel('Feature')
+# plt.title('Heart Disease Coefficients')
+# plt.grid(True)
+
+# Save image
+fig_name = "Confusion Matrix Threshold 0.7.png"
+bp = base_path + "/Figures"
+save_to = os.path.join(bp, fig_name)
+# plt.savefig(save_to)
+# plt.savefig(save_to, dpi=300, bbox_inches='tight')
+plt.savefig(save_to, bbox_inches='tight')
+
+# plt.show()
