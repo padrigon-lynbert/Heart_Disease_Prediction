@@ -11,7 +11,7 @@ from sklearn.metrics import accuracy_score, confusion_matrix, classification_rep
 from icecream import ic as print
 
 # locating filepath of the dataframe
-base_path = "D:/manualCDmanagement/codes/Projects/VMs/skl algorithms/Logistic Regression/diabetes.v1/Storage"
+base_path = "D:\manualCDmanagement\codes\Projects\VMs\skl algorithms\Logistic Regression\Heart_disease.1/Storage"
 file_name = "heart_disease_dataset.csv"
 file_path = os.path.join(base_path, file_name)
 
